@@ -14,7 +14,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'g++ main/hello.cpp -o main/output'
-    
+            }
+        }
 
         stage('Test') {
             steps {
@@ -29,3 +30,9 @@ pipeline {
         }
     }
 
+    post {
+        failure {
+            error 'Pipeline failed'
+        }
+    }
+}
